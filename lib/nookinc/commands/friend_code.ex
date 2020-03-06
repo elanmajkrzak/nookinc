@@ -7,13 +7,16 @@ defmodule Nookinc.Commands.FriendCode do
     {:ok, ""}
   end
 
-  def create(user_id, friend_code) do
+  def add(user_id, friend_code) do
+    #TODO convert to upsert
     %FriendCode{}
     |> FriendCode.changeset(%{user_id: user_id, switch: friend_code})
     |> FriendCode.create()
     |> case do
-      {:ok, friend_code} ->
-        ""
+      {:ok, _} ->
+        "Successfully saved friend code"
+      {:error, _} ->
+        "uh oh, we made a fucky wucky uwu"
     end
   end
 end

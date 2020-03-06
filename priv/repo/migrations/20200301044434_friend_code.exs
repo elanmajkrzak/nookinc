@@ -3,7 +3,7 @@ defmodule Nookinc.Repo.Migrations.FriendCode do
 
   def change do
     create table(:friend_codes) do
-      add :user_id, :string
+      add :user_id, :bigint
       add :switch, :string
     end
   end

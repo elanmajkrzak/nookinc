@@ -4,7 +4,7 @@ defmodule Nookinc.Models.FriendCode do
   alias Nookinc.Repo
 
   schema "friend_codes" do
-    field :user_id, :string
+    field :user_id, :integer
     field :switch, :string
   end
 
