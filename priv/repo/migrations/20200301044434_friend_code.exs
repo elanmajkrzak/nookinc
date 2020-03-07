@@ -6,5 +6,7 @@ defmodule Nookinc.Repo.Migrations.FriendCode do
       add :user_id, :bigint
       add :switch, :string
     end
+
+    create unique_index(:friend_codes, [:user_id])
   end
 end

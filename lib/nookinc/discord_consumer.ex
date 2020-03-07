@@ -6,7 +6,9 @@ defmodule Nookinc.DiscordConsumer do
 
   def start_link, do: Consumer.start_link(__MODULE__)
 
-  def handle_event({:MESSAGE_CREATE, %Message{content: content, channel_id: channel_id} = msg, _ws_state}) do
+  def handle_event(
+        {:MESSAGE_CREATE, %Message{content: content, channel_id: channel_id} = msg, _ws_state}
+      ) do
     content
     |> String.split(" ")
     |> handle_command(msg)
@@ -17,10 +19,11 @@ defmodule Nookinc.DiscordConsumer do
 
   def handle_command([command], %Message{}) do
     command
-    |> String.downcase
+    |> String.downcase()
     |> case do
       "ping!" ->
         {:ok, "Don't fucking @ me"}
+
       # "!fc" ->
 
       _ ->
@@ -30,13 +33,15 @@ defmodule Nookinc.DiscordConsumer do
 
   def handle_command([command, arg | _], %Message{} = message) do
     command
-    |> String.downcase
+    |> String.downcase()
     |> case do
       "!fc" ->
-        #TODO
+        # TODO
         :todo
+
       "!fcadd" ->
-        {:ok, FriendCodeCommand.add(message.author.id , arg)}
+        {:ok, FriendCodeCommand.add(message.author.id, arg)}
+
       _ ->
         :noreply
     end
