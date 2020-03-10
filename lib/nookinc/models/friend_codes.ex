@@ -1,6 +1,7 @@
 defmodule Nookinc.Models.FriendCode do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
   alias Nookinc.Repo
 
   schema "friend_codes" do
@@ -21,8 +22,25 @@ defmodule Nookinc.Models.FriendCode do
     |> case do
       nil ->
         %__MODULE__{}
+
       friend_code ->
         friend_code
+    end
+  end
+
+  def find([_ | _] = user_ids) do
+    Nookinc.Models.FriendCode
+    |> where([fc], fc.user_id in ^user_ids)
+    |> Repo.all()
+    |> case do
+      [_ | _] = friend_codes ->
+        {:ok, friend_codes}
+
+      [] ->
+        {:ok, []}
+
+      _ ->
+        :error
     end
   end
 

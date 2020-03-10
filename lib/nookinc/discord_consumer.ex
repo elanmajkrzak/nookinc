@@ -17,14 +17,17 @@ defmodule Nookinc.DiscordConsumer do
 
   def handle_event(_), do: :noop
 
-  def handle_command([command], %Message{}) do
+  @spec handle_command(nonempty_maybe_improper_list, Nostrum.Struct.Message.t()) ::
+          :noreply | :ok | {:ok, any}
+  def handle_command([command], %Message{} = message) do
     command
     |> String.downcase()
     |> case do
       "ping!" ->
         {:ok, "Don't fucking @ me"}
 
-      # "!fc" ->
+      "!fc" ->
+        {:ok, FriendCodeCommand.lookup(message.author)}
 
       _ ->
         :ok
@@ -36,8 +39,7 @@ defmodule Nookinc.DiscordConsumer do
     |> String.downcase()
     |> case do
       "!fc" ->
-        # TODO
-        :todo
+        {:ok, FriendCodeCommand.lookup(message.mentions)}
 
       "!fcadd" ->
         {:ok, FriendCodeCommand.add(message.author.id, arg)}
