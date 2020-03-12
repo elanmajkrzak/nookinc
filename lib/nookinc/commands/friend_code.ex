@@ -33,11 +33,13 @@ defmodule Nookinc.Commands.FriendCode do
   end
 
   defp friend_code_message(%FriendCode{user_id: user_id, switch: switch}) when is_nil(switch) do
-    "#{user_id} has not set a friend code yet"
+    user = %Nostrum.Struct.User{id: user_id}
+    "#{user} has not set a friend code yet"
   end
 
   defp friend_code_message(%FriendCode{user_id: user_id, switch: switch}) do
-    "#{user_id}'s friend code is: #{switch}"
+    user = %Nostrum.Struct.User{id: user_id}
+    "#{user}'s friend code is: #{switch}"
   end
 
   defp friend_code_message([]), do: "None of those users have set a friend code yet."
