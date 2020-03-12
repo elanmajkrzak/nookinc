@@ -3,6 +3,7 @@ defmodule Nookinc.DiscordConsumer do
   alias Nostrum.Api
   alias Nostrum.Struct.Message
   alias Nookinc.Commands.FriendCode, as: FriendCodeCommand
+  alias Nookinc.Commands.Util, as: UtilCommand
 
   def start_link, do: Consumer.start_link(__MODULE__)
 
@@ -28,6 +29,9 @@ defmodule Nookinc.DiscordConsumer do
 
       "!fc" ->
         {:ok, FriendCodeCommand.lookup(message.author)}
+
+      "!help" ->
+        {:ok, UtilCommand.help()}
 
       _ ->
         :ok
