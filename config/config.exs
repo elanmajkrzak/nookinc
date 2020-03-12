@@ -11,7 +11,7 @@ config :nookinc,
 
 config :nookinc, Nookinc.Repo,
   database: "nookinc",
-  username: System.get_env("DB_USER"),
-  password: System.get_env("DB_PASS"),
-  hostname: System.get_env("DB_HOST"),
-  port: System.get_env("DB_PORT")
+  username: System.get_env("DATABASE_USER"),
+  password: System.get_env("DATABASE_PASS"),
+  hostname: System.get_env("DATABASE_URL"),
+  port: System.get_env("DATABASE_PORT")
