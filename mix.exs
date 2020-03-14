@@ -20,7 +20,7 @@ defmodule Nookinc.MixProject do
 
   defp deps do
     [
-      {:nostrum, "~> 0.4"},
+      {:nostrum_heroku, "~> 0.4.2"},
       {:ecto_sql, "~> 3.0"},
       {:postgrex, ">= 0.0.0"}
     ]
