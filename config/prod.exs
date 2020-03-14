@@ -10,8 +10,7 @@ config :nookinc,
   ecto_repos: [Nookinc.Repo]
 
 config :nookinc, Nookinc.Repo,
-  database: "nookinc",
-  username: System.get_env("DB_USER"),
-  password: System.get_env("DB_PASS"),
-  hostname: System.get_env("DB_HOST"),
-  port: System.get_env("DB_PORT")
+  adapter: Ecto.Adapters.Postgres,
+  url: System.get_env("DATABASE_URL"),
+  ssl: true,
+  pool_size: 2 # Free tier db only allows 4 connections. Rolling deploys need pool_size*(n+1) connections where n is the number of app replicas.
