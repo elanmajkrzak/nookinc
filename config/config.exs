@@ -2,7 +2,7 @@ import Config
 
 config :nostrum,
   # The token of your bot as a string
-  token: System.get_env("BOT_TOKEN") || "NjgyNDMxMzk3NTI4NjAwNjM5.Xlnd5A.VZ5Lk4NtZYdvrEyx_yeqfnXP34w",
+  token: System.get_env("BOT_TOKEN") || "NjgyNDMxMzk3NTI4NjAwNjM5.Xm1rog.1KF2GurX6hkvqjOwdM_1i0Av4VE",
   # The number of shards you want to run your bot under, or :auto.
   num_shards: :auto
 
