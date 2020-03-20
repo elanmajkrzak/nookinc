@@ -14,6 +14,7 @@ defmodule Nookinc.Models.FriendCode do
     |> cast(params, [:user_id, :switch])
     |> validate_required([:user_id, :switch])
     |> unique_constraint(:user_id)
+    |> validate_format(:switch, ~r/^[Ss][Ww]-[0-9]{4}-[0-9]{4}-[0-9]{4}\b/)
   end
 
   def find(user_id) when is_integer(user_id) do
@@ -51,9 +52,5 @@ defmodule Nookinc.Models.FriendCode do
     |> Repo.insert_or_update()
   end
 
-  def create(%__changeset__{valid?: false} = changeset) do
-    IO.inspect(changeset, label: "create false")
-  end
-
-  def create(changeset), do: IO.puts(changeset, label: "default")
+  def create(%__changeset__{valid?: false} = changeset), do: {:error, changeset}
 end

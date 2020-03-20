@@ -54,6 +54,9 @@ defmodule Nookinc.Commands.FriendCode do
       {:ok, _} ->
         "Successfully saved friend code"
 
+      {:error, %__changeset__{valid?: false}} ->
+        "Invalid friend code, it should be in the form SW-1234-1234-1234"
+
       {:error, _} ->
         @error_uwu
     end
