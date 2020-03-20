@@ -21,7 +21,7 @@ defmodule Nookinc.Models.FriendCode do
     |> Repo.get_by(user_id: user_id)
     |> case do
       nil ->
-        %__MODULE__{}
+        %__MODULE__{user_id: user_id}
 
       friend_code ->
         friend_code
