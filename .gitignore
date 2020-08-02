@@ -24,3 +24,10 @@ nookinc-*.tar
 
 /config/config_dev.exs
 /config/config.exs
+
+# Android studio 3.1+ serialized cache file
+.idea/caches/build_file_checksums.ser
+.elixir_ls/
+.formatter.exs
+.idea/
+.DEPLOY.md

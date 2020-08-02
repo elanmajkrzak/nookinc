@@ -2,6 +2,7 @@ defmodule Nookinc.DiscordConsumer do
   use Nostrum.Consumer
   alias Nostrum.Api
   alias Nostrum.Struct.Message
+  alias Nookinc.Commands.DreamAddress, as: DreamAddressCommand
   alias Nookinc.Commands.FriendCode, as: FriendCodeCommand
   alias Nookinc.Commands.Util, as: UtilCommand
 
@@ -30,6 +31,9 @@ defmodule Nookinc.DiscordConsumer do
       "!fc" ->
         {:ok, FriendCodeCommand.lookup(message.author)}
 
+      "!da" ->
+        {:ok, DreamAddressCommand.lookup(message.author)}
+
       "!help" ->
         {:ok, UtilCommand.help()}
 
@@ -47,6 +51,12 @@ defmodule Nookinc.DiscordConsumer do
 
       "!fcadd" ->
         {:ok, FriendCodeCommand.add(message.author.id, arg)}
+
+      "!da" ->
+        {:ok, DreamAddressCommand.lookup(message.mentions)}
+
+      "!daadd" ->
+        {:ok, DreamAddressCommand.add(message.author.id, arg)}
 
       _ ->
         :noreply

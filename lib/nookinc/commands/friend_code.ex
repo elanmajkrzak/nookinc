@@ -27,7 +27,7 @@ defmodule Nookinc.Commands.FriendCode do
       {:ok, []} ->
         friend_code_message([])
 
-      {:error, _} ->
+      _ ->
         @error_uwu
     end
   end
